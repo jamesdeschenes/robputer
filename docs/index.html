@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robputer</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">    
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/elizabot.js"></script>
+    <script type="text/javascript" src="js/brain.js"></script>
+</head>
+<body>
+    <!-- Audio -->
+    <audio preload="auto" id="awaken-sound">
+        <source src="sound/awaken.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="microdong-systems-jingle">
+        <source src="sound/microdong_systems.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="robputer-logo-music" loop>
+        <source src="sound/restricted/robputer_logo.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="bootup-sounds">
+        <source src="sound/bootup.mp3" type="audio/mpeg">
+    </audio>    
+    <audio preload="auto" id="beep-sound">
+        <source src="sound/tone_c4.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="music-a" loop>
+        <source src="sound/restricted/terminal_reflections.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="activate">
+        <source src="sound/select.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="open-menu-sound">
+        <source src="sound/menu_open.mp3" type="audio/mpeg">
+    </audio>    
+    <audio preload="auto" id="close-menu-sound">
+        <source src="sound/menu_close.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="select-menu-sound">
+        <source src="sound/menu_select_3.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="robpute">
+        <source src="sound/robpute.mp3" type="audio/mpeg">
+    </audio>       
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="https://github.com/jamesdeschenes/robputer">GitHub</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html">Robputer</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>      
+    <!-- Screen Container -->
+    <div id="container">
+        <!-- Scanline Effect -->
+        <div id="crt"></div>
+        <!-- Landing Page -->
+        <div id="rob-os">
+            <div id="awaken-robputer-button">
+                <img src="img/robputer_icon.png"></img>
+                <br/>
+                <span>Awaken Robputer</span>
+            </div>
+            <div id="task-bar">
+                <div id="start-menu-button">Launch<div id="start-menu">
+                    <button class="start-menu-item" id="robamp-button">RobAmp</button>
+                    <button class="start-menu-item" id="youtube-button">YouTube</button>
+                    <button class="start-menu-item" id="spotify-button" onclick="window.open('https://open.spotify.com/artist/2atgXs1xo98HcUnDwPZOZb')">Spotify</button>
+                    <button class="start-menu-item" id="ig-button" onclick="window.open('https://www.instagram.com/microdongsystems/')">Instagram</button>
+                    <button class="start-menu-item" id="bluesky-button" onclick="window.open('https://bsky.app/profile/robputer.bsky.social')">BlueSky</button>
+                </div></div>
+                <div class="spacer"></div>
+                <div id="rob-os-version">RobOS 1.0</div>
+                <div id="clock">12:00 AM</div>
+            </div>
+            <div id="robamp"></div>
+            <div id="youtube-window" class="os-window" style="z-index: 7;display: none;">
+                <div id="youtube-window-header" class="os-window-header">
+                    <div class="os-window-title">YouTube</div>
+                    <div class="os-window-buttons">
+                        <div id="youtube-window-close" class="os-window-button os-window-close">X</div>
+                    </div>
+                </div>        
+                <!-- <p>YouTube Conents</p> -->
+                <iframe id="youtube-video"
+                  src="https://www.youtube.com/embed/ucJ-gyHX5IA?enablejsapi=1&version=3&playerapiid=ytplayer"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen="true"
+                  allowscriptaccess="always"
+                ></iframe>
+              </div>
+        </div>    
+        <div id="boot-loader-screen">
+            <div id="boot-loader"></div>
+        </div>        
+        <!-- Microdong Computer Systems Logo -->
+        <div id="microdong-screen">
+            <div class="swirl-container">
+                <div class="pulse-out">
+                    <img class="swirl swirl-clockwise" src="img/swirl_a.png" alt="Swirling Cloud"></img>
+                </div>
+                <div class="pulse-in">
+                    <img class="swirl swirl-counterclockwise" src="img/swirl_b.png" alt="Swirling Cloud"></img>
+                </div>
+            </div>
+            <img id="microdong-logo" src="img/microdong_systems.png" alt="Microdong Systems Logo"></img>
+            <img id="microdong-motto" src="img/motto.png" alt="Do More with Less!"></img>                        
+        </div>
+        <div id="word-cloud"></div>        
+        <!-- Robputer Logo -->
+        <div id="robputer-logo-screen", class="giant">
+            <div class="gear-parent">
+                <div class="gear-container">
+                    <img class="gear-big counterclockwise-big" id="gear1" src="img/gear_big.png">
+                    <img class="gear-big" id="gear2" src="img/gear_big.png">
+                    <img class="gear-big" id="gear3" src="img/gear_big.png">
+                    <img class="gear-big" id="gear4" src="img/gear_big.png">
+                    <img class="gear-big" id="gear5" src="img/gear_big.png">
+                    <img class="gear-big" id="gear6" src="img/gear_big.png">
+                    <img class="gear-big counterclockwise-big" id="gear7" src="img/gear_big.png">
+                    <img class="gear-small counterclockwise-small" id="gear8" src="img/gear_small.png">
+                    <img class="gear-small" id="gear9" src="img/gear_small.png">
+                    <img class="gear-small counterclockwise-small" id="gear10" src="img/gear_small.png">
+                    <img class="gear-small" id="gear16" src="img/gear_small.png">
+                    <img class="gear-small counterclockwise-small" id="gear11" src="img/gear_small.png">
+                    <img class="gear-small counterclockwise-small" id="gear12" src="img/gear_small.png">
+                    <img class="gear-small" id="gear13" src="img/gear_small.png">
+                    <img class="gear-small counterclockwise-small" id="gear14" src="img/gear_small.png">
+                    <img class="gear-small" id="gear15" src="img/gear_small.png">
+                </div> 
+            </div>
+            <div id="robputer-logo-container">
+                <img id="robputer-logo-text" src="img/robputer.png" alt="Robputer"></im</div>
+                <p id="press-key-text">PRESS ANY KEY TO START</p>
+            </div>            
+        </div>
+        <!-- Robputer Console -->
+        <div id="console-screen">
+            <div class="robputer-container">
+                <img src="img/restricted/robputer_eyes.png" alt="eyes" class="animate-eyes" draggable="false">
+                <div id="robputer-head-neutral">
+                    <img src="img/restricted/robputer_head_neutral.png" alt="head neutral" draggable="false">
+                    <img src="img/restricted/robputer_head_neutral_eyes_closed.png" class="head-eyes-shut" alt="head neutral eyes closed" draggable="false">
+                </div>
+                <div id="robputer-head-angry">
+                    <img src="img/restricted/robputer_head_angry.png" alt="head angry" draggable="false">                
+                    <img src="img/restricted/robputer_head_angry_eyes_closed.png" class="head-eyes-shut" alt="head angry eyes closed" draggable="false">                
+                </div>
+                <img src="img/restricted/robputer_mouth_open.png" id="mouth" class="mouth" alt="mouth open" draggable="false">
+            </div>
+            <div id="terminal">
+                Microdong Systems - Genesis Engine Alpha
+            
+                <div id="history"></div>
+            
+                >
+                
+                <div id="input" contenteditable="true"></div><button id="caret" for="input">&nbsp;</button>
+            </div>            
+        </div>
+    </div>
+    <script src="https://unpkg.com/webamp"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="js/robamp.js"></script>
+    <script src="js/robputer.js"></script>
+    <script src="js/screens.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robputer</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">    
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/elizabot.js"></script>
+    <script type="text/javascript" src="js/brain.js"></script>
+</head>
+<body>
+    <!-- Audio -->
+    <audio preload="auto" id="awaken-sound">
+        <source src="sound/awaken.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="microdong-systems-jingle">
+        <source src="sound/microdong_systems.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="robputer-logo-music" loop>
+        <source src="sound/restricted/robputer_logo.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="bootup-sounds">
+        <source src="sound/bootup.mp3" type="audio/mpeg">
+    </audio>    
+    <audio preload="auto" id="beep-sound">
+        <source src="sound/tone_c4.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="music-a" loop>
+        <source src="sound/restricted/terminal_reflections.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="activate">
+        <source src="sound/select.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="open-menu-sound">
+        <source src="sound/menu_open.mp3" type="audio/mpeg">
+    </audio>    
+    <audio preload="auto" id="close-menu-sound">
+        <source src="sound/menu_close.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="select-menu-sound">
+        <source src="sound/menu_select_3.mp3" type="audio/mpeg">
+    </audio>
+    <audio preload="auto" id="robpute">
+        <source src="sound/robpute.mp3" type="audio/mpeg">
+    </audio>  
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="https://github.com/jamesdeschenes/robputer">GitHub</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="index.html">Robputer</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </nav>      
+    <!-- Screen Container -->
+    <div id="container">
+        <!-- Scanline Effect -->
+        <div id="crt"></div>
+        <!-- Robputer Console -->
+        <div id="console-screen">
+            <div class="robputer-container">
+                <img src="img/restricted/robputer_eyes.png" alt="eyes" class="animate-eyes" draggable="false">
+                <div id="robputer-head-neutral">
+                    <img src="img/restricted/robputer_head_neutral.png" alt="head neutral" draggable="false">
+                    <img src="img/restricted/robputer_head_neutral_eyes_closed.png" class="head-eyes-shut" alt="head neutral eyes closed" draggable="false">
+                </div>
+                <div id="robputer-head-angry">
+                    <img src="img/restricted/robputer_head_angry.png" alt="head angry" draggable="false">                
+                    <img src="img/restricted/robputer_head_angry_eyes_closed.png" class="head-eyes-shut" alt="head angry eyes closed" draggable="false">                
+                </div>
+                <img src="img/restricted/robputer_mouth_open.png" id="mouth" class="mouth" alt="mouth open" draggable="false">
+            </div>
+            <div id="terminal">
+                Microdong Systems - Genesis Engine Alpha
+            
+                <div id="history"></div>
+            
+                >
+                
+                <div id="input" contenteditable="true"></div><button id="caret" for="input">&nbsp;</button>
+            </div>            
+        </div>
+    </div>
+    <script src="js/robputer.js"></script>
+    <script>
+        const consoleScreen = document.getElementById('console-screen');
+        consoleScreen.style.opacity = 100;
+        consoleScreen.style.display = 'flex';
+        consoleScreen.offsetHeight;
+    </script>
+</body>
+</html>
+
+

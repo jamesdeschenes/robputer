@@ -1,0 +1,1149 @@
+/* stylelint-disable color-function-notation */
+/* stylelint-disable comment-whitespace-inside */
+/* stylelint-disable comment-empty-line-before */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gugi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Workbench&display=swap');
+
+/**********/
+/* COMMON */
+/**********/
+body {
+    background-color: black;
+    background-image: radial-gradient(rgba(0, 51, 0, 75%), black 120%);
+    font-family: 'VT323', 'Courier New', monospace;
+    font-size: max(2vh, 1.5rem);
+    color:rgb(57, 197, 49);
+    cursor: url('/img/cursor.png') 2 2, auto;
+    margin: 0;
+    overflow: hidden;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/******************/
+/* NAVIGATION BAR */
+/******************/
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 3; /* Ensure it stays on top of other elements */
+  background-color: #00000075;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  float: right;
+}
+
+nav ul li a {
+  display: block;
+  color: rgb(198, 255, 133);
+  text-align: center;
+  padding: 0.4rem;
+  margin: 0.5rem;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  border: 0.2rem solid transparent;
+  border-style: groove;
+}
+
+@keyframes nav-link-blink {
+  0%, 35% {
+    border-color: rgb(198, 255, 133, 60%);
+  }
+
+  50%, 85% {
+    border-color: transparent;
+  }
+
+  100% {
+    border-color: rgb(198, 255, 133, 60%);
+  }
+}
+
+nav ul li a:hover {
+  background-color: #09ff006c;
+  cursor: url('/img/cursor_hand.png') 9 3, auto;
+  animation: nav-link-blink 1s infinite;
+}
+  
+/*************/
+/* SCANLINES */
+/*************/
+#crt::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  /* height: 100vh; */
+  height: 100vh;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      rgba(18, 16, 16, 0%) 50%,
+      rgba(0, 0, 0, 15%) 50%
+  );
+  background-size: 100% 3px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+#crt::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  height: 100vh;
+  inset: 0;
+  background: rgba(18, 16, 16, 20%);
+  opacity: 0;
+  z-index: 10;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+  
+@keyframes flicker {
+    0% {
+    opacity: 0.2786;
+    }
+
+    5% {
+    opacity: 0.3476;
+    }
+
+    10% {
+    opacity: 0.2360;
+    }
+
+    15% {
+    opacity: 0.9062;
+    }
+
+    20% {
+    opacity: 0.1812;
+    }
+
+    25% {
+    opacity: 0.8389;
+    }
+
+    30% {
+    opacity: 0.6558;
+    }
+
+    35% {
+    opacity: 0.6780;
+    }
+
+    40% {
+    opacity: 0.2655;
+    }
+
+    45% {
+    opacity: 0.8469;
+    }
+
+    50% {
+    opacity: 0.9601;
+    }
+
+    55% {
+    opacity: 0.0859;
+    }
+
+    60% {
+    opacity: 0.2031;
+    }
+
+    65% {
+    opacity: 0.7198;
+    }
+
+    70% {
+    opacity: 0.5345;
+    }
+
+    75% {
+    opacity: 0.3728;
+    }
+
+    80% {
+    opacity: 0.7142;
+    }
+
+    85% {
+    opacity: 0.7041;
+    }
+
+    90% {
+    opacity: 0.7003;
+    }
+
+    95% {
+    opacity: 0.3610;
+    }
+
+    100% {
+    opacity: 0.2438;
+    }
+}
+
+/*****************************/
+/* SCREEN - START EXPERIENCE */
+/*****************************/
+
+.os-window {
+  position: absolute;
+  top: 25vh;
+  left: 25vw;
+  /* background-color: rgb(90, 245, 0, 50%); */
+  background: linear-gradient(0deg, rgba(13, 69, 0, 100%) 0%, rgba(0, 36, 10, 100%) 9%, rgba(53, 121, 9, 100%) 52%, rgb(0, 192, 26) 96%, rgba(0, 245, 90, 100%) 100%);
+  padding: 4px;
+  border: solid;
+  border-width: 0.5vh;
+  border-color: rgb(90, 245, 0, 50%);
+  border-radius: 1vh;
+}
+
+.os-window-header {
+  display: flex;
+  justify-content: space-between;
+  cursor: url('/img/cursor_move.png') 22 5, auto;
+  color:rgb(128, 255, 64);
+  background-color:rgb(33, 200, 27, 50%);
+  border-radius: 1vh;
+  margin-bottom: 4px;
+  padding-left: 1vh;
+}
+
+.os-window-buttons {
+  display: flex;
+  height: max(2vh, 1.5rem);
+  gap: 4px;
+  align-items: center;
+}
+
+.os-window-close {
+  display: block;
+  color:rgb(128, 255, 64);
+  width: max(2vh, 1.5rem);
+  border-radius: 1vh;
+  border-style: outset;
+  border-color: rgb(128, 255, 0, 50%);
+  background-color: rgba(34, 109, 0, 50%);
+  cursor: url('/img/cursor_hand.png') 9 3, auto;
+}
+
+#youtube-video {
+  width: 50vw;
+  height: calc(50vw / 1.778);
+}
+
+#rob-os {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;  
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: auto;
+  overflow: hidden;
+}
+
+#awaken-robputer-button {
+  position: absolute;
+  user-select: none;
+  width: auto;
+  height: 50%;
+  cursor: url('/img/cursor_hand.png') 9 3, auto;
+  z-index: 3;
+ }
+
+ #awaken-robputer-button:hover {
+  animation: hover-icon-effect 1.0s infinite;
+}
+
+@keyframes hover-icon-effect {
+  10%, 90% {
+    filter: brightness(1);
+  }
+  
+  40%, 60% {
+    filter: brightness(1.5);
+  }
+}
+
+ #awaken-robputer-button img {
+  aspect-ratio: 1;
+  width: auto;
+  height: 100%;
+  margin-bottom: -7%;
+}
+
+#awaken-robputer-button span {
+  display: block;
+  background-color: rgba(0, 200, 0, 0%);
+  margin-left: 5rem;
+  margin-right: 5rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#awaken-robputer-button:hover span {
+  background-color: rgba(0, 200, 0, 25%);
+}
+
+#task-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  position: fixed;
+  z-index: 3;
+  bottom: 0;
+  height: 3vh;
+  width: calc(100vw - 1.0vh);
+  background-color:rgb(33, 141, 27);
+  border-width: 0.5vh;
+  border-style: outset;
+  border-color: rgb(128, 255, 64, 50%);
+  font-size: 2vh;
+  pointer-events: all;
+  cursor: url('/img/cursor.png') 4 5, auto;
+}
+
+/* #task-bar:hover {
+  background-color:rgb(255, 141, 27, 75%);
+  cursor: url('/img/cursor.png') 4 5, auto;
+} */
+
+#rob-os-version {
+  /* display: block; */
+  user-select: none;
+  position: relative;
+  color: rgb(128, 255, 64);
+  padding: 0.5rem;
+}
+
+#clock {
+  /* display: block; */
+  user-select: none;
+  position: relative;
+  color: rgb(128, 255, 64);
+  background: linear-gradient(rgb(0, 16, 0), rgb(0, 64, 0));
+  margin: 0.25vh;
+  padding: 0.25vh 1.0vh;
+  border-style: inset;
+  border-width: 0.25vh;  
+  border-radius: 0.25rem;
+  border-color: rgb(128, 255, 64, 100%);
+  animation: clock-blinking 1s linear 0s infinite;
+  font-family: Workbench, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: oblique;
+}
+
+@keyframes clock-blinking {
+  0%, 35%, 65%, 100% {
+    color: rgb(128, 255, 64, 100%);
+  }
+  
+  40%, 60% {
+    color: rgb(128, 255, 64, 10%);
+  }
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+#start-menu-button {
+  user-select: none;
+  color: rgb(128, 255, 64);
+  margin: 1.25vh;
+  padding: 0.25vh 2.0vh;  
+  background-color:rgb(33, 141, 27);
+  border-width: 0.25vh;  
+  border-radius: 0.5vh;
+  border-color: rgb(128, 255, 64, 100%);
+  border-style: outset;
+  cursor: url('/img/cursor_hand.png') 9 3, auto;
+}
+
+#start-menu-button:hover {
+  background-color:rgb(16, 71, 13);
+  border-color: rgb(128, 255, 64, 100%);
+}
+
+#start-menu {
+  user-select: none;
+  display: flex;
+  position: absolute;
+  bottom: 3vh;
+  min-width: 8vw;
+  background:
+    url(/img/start_menu_bg.png),
+    linear-gradient(0deg, rgba(13, 69, 0, 100%) 0%, rgba(0, 36, 10, 100%) 9%, rgba(53, 121, 9, 100%) 52%, rgb(0, 192, 26) 96%, rgba(0, 245, 90, 100%) 100%);
+  background-size: 100% auto, auto;
+  background-repeat: no-repeat, repeat;
+  background-position: bottom center;
+  border-width: 0.5vh;
+  border-style: outset;
+  border-color: rgb(128, 255, 64, 50%);
+  box-shadow: 0.5vh 0.5vh 0.25vh rgba(0, 0, 0, 50%);
+  height: 30vh;
+  left: 0;
+  margin: 0.25vh 1.25vh;
+  border-radius: 0.5vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: bottom left;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+#start-menu.expanded {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+
+#start-menu button {
+  display: block;
+  font-family: 'VT323', 'Courier New', monospace;
+  font-size: 2.5vh;
+  width: 95%;
+  border-radius: 0.5vh;
+  background: rgb(32, 128, 32, 25%);
+  text-align: left;
+  margin: 0.5vh 0 0.25vh;
+  cursor: url(/img/cursor_hand.png) 9 3, auto;
+  border-width: 0.5vh;
+  border-style: groove;
+  border-color: rgb(96, 255, 0, 50%);
+  color:rgb(128, 255, 64);
+}
+
+#start-menu button:hover {
+  background-color: rgb(128, 255, 0, 50%);
+  color: rgb(0, 64, 0);
+}
+
+/************************/
+ /* SCREEN - BOOT LOADER */
+ /************************/
+#boot-loader-screen {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 20px; /* Add spacing on all sides */
+  height: 100vh; /* Full viewport height */
+  box-sizing: border-box; /* Include padding in height calculation */
+}
+
+ 
+ #boot-loader {
+  width: 80vw; /* Set a fixed width */
+  height: 80vh; /* Set a fixed height */
+  overflow: auto; /* Add scrollbars if content overflows */
+  white-space: pre-wrap; /* Preserve whitespace and wrap text */
+  border: 1px solid #00ff008f; /* Optional: Add a border for visual reference */
+  border-radius: 8px;
+  padding: 10px; /* Optional: Add padding for better readability */
+  background-color: rgba(0, 0, 0, 50%); /* Optional: Set background color */
+  color: green; /* Optional: Set text color */
+  font-family: monospace; /* Optional: Use a monospace font */
+  font-size: clamp(12px, 2vw, 18px);
+  scrollbar-width: auto; /* Thin scrollbar for Firefox */
+  scrollbar-color: green rgba(0, 0, 0, 50%); /* Scrollbar colors for Firefox */  
+  transform: scaleY(0); /* Initially hidden */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out,  0.5s ease-in-out; /* Smooth transition for transform */  
+  margin: auto;
+}
+
+#boot-loader.expanded {
+  opacity: 1;
+  transform: scaleY(1); /* Expand the loader */
+}
+
+/* WebKit-based browsers (Chrome, Safari) */
+#boot-loader::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+#boot-loader::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 50%); /* Background of the scrollbar track */
+}
+
+#boot-loader::-webkit-scrollbar-thumb {
+  background-color: green; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+  border: 2px solid black; /* Border around the scrollbar thumb */
+}
+
+ /* Flash and fade effect */
+.flash-fade {
+  animation: flash-fade 1s forwards;
+}
+
+@keyframes flash-fade {
+  0% {
+      color: white;
+  }
+
+  100% {
+      color: green;
+  }
+}
+
+/***************************/
+/* SCREEN - MICRODONG LOGO */
+/***************************/
+#microdong-screen {
+    opacity: 0;
+    position: relative;
+    width: 75%;
+    height: 100%;
+    overflow: hidden;
+    display: none;
+    align-items: center;
+    justify-content: center; /* Centers the content inside */
+    transition: opacity 1s ease-in-out; /* Fade-in effect over 1 second */
+    mix-blend-mode: screen;
+    margin: auto;
+}
+
+.swirl {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    mix-blend-mode: screen;
+}
+
+ /* Swirl Rotations */
+.swirl-clockwise {
+    animation: swirl-rotate-clockwise 20s linear infinite
+}
+
+.swirl-counterclockwise {
+    animation: swirl-rotate-counterclockwise 20s linear infinite
+}
+
+/* Rotation Keyframes */
+@keyframes swirl-rotate-clockwise {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes swirl-rotate-counterclockwise {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    to {
+        transform: translate(-50%, -50%) rotate(-360deg);
+    }
+}
+
+.swirl-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    mix-blend-mode: screen;
+}
+
+.pulse-in {
+    mix-blend-mode: screen;
+    animation: pulse-in 5s ease-in-out infinite;
+}
+
+.pulse-out {
+    mix-blend-mode: screen;
+    animation: pulse-out 5s ease-in-out infinite;
+}
+
+/* Pulse Wobble Keyframes */
+@keyframes pulse-out {
+    0%, 100% {
+        transform: scale(0.90);
+        opacity: 0.25;
+    }
+
+    50% {
+        transform: scale(1.0);
+        opacity: 0.05;
+    }
+}
+
+@keyframes pulse-in {
+    0%, 100% {
+        transform: scale(1.0);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(0.9);
+        opacity: 0.55;
+    }
+}
+
+
+/* Microdong Systems logo - centered over the swirl */
+#microdong-logo {
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center horizontally and vertically */
+    z-index: 3; /* Ensure it's on top of the swirls */
+    width: auto;
+    height: auto;
+    max-width: 100%; /* Adjust as necessary */
+    max-height: 100%; /* Adjust as necessary */
+    opacity: 0; /* Initially hidden */
+    animation: fade-in 0.1s linear 1.82s forwards; /* Fades in suddenly after 1.82s */    
+}
+
+/* Keyframes for sudden appearance */
+@keyframes fade-in {
+    to {
+        opacity: 1;
+    }
+}
+
+#word-cloud {
+    mix-blend-mode: screen;
+    display: hidden;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+}
+
+.microdong-word {
+    position: absolute;
+    opacity: 0;
+    transform: scale(0.8);
+    font-family: Workbench, sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: oblique;
+    color: #0f5;
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    overflow: hidden;
+}
+
+#microdong-motto {
+    mix-blend-mode: screen;
+    position: absolute;
+    top: calc(50% + clamp(10px, 10vw, 150px)); /* Limit the scaling of offset to prevent too much shift */
+    left: 50%;
+    transform: translate(-50%, 0) scale(1.5); /* Keep horizontally centered */
+    width: clamp(100px, 30vw, 400px); /* Scales responsively, but limited by min/max values */
+    height: auto;
+    opacity: 0;
+    animation: motto-appearance 1.0s linear 13.0s forwards; /* Fades in suddenly after 1.82s */    
+}
+
+/* Keyframes for sudden appearance */
+@keyframes motto-appearance {
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1.0);
+    }
+}
+
+/***************************/
+/* SCREEN - ROBPUTER LOGO */
+/***************************/
+
+#robputer-logo-screen {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    transform: scale(1);
+    will-change: transform opacity;
+    transition: opacity 14s linear, transform 14s ease;
+}
+
+#robputer-logo-screen.giant {
+    opacity: 0;
+    transform: scale(50);
+}
+
+#robputer-logo-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;  
+  margin-top: 1%;
+  margin-bottom: auto;
+}
+
+#robputer-logo-text {
+  max-width: 95vw;
+  max-height: 15vh;
+  width: auto;
+  height: auto;
+  align-self: center;
+  opacity: 0;
+  animation: robputer-logo-flicker 0.53s linear 16.3s forwards;
+}
+
+#press-key-text {
+  animation: blinker 1s linear infinite;
+  opacity: 0;
+  text-align: center;
+  font-weight: bold;
+  transition: opacity 1s ease-in-out;
+}
+
+@keyframes robputer-logo-flicker {
+  0%, 100% {
+      opacity: 1;
+      filter: none;
+      transform: none;
+  }
+
+  10%, 20%, 30%, 50%, 70%, 90% {
+      opacity: 0.5;
+      filter: brightness(50%);
+      transform: skewX(2deg);
+  }
+
+  40%, 60%, 80% {
+      opacity: 0.8;
+      filter: brightness(200%);
+      transform: skewX(-2deg);
+  }
+
+  25%, 35%, 45%, 55% {
+    filter: blur(5px) saturate(200%);
+  }
+}
+
+  .blinking {
+    animation: blinker 1s linear infinite;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .gear-parent {
+    position: relative;
+    min-width: clamp(1vh, 75vh, 95vw);  /* Width is 50% of the viewport */
+    min-height: clamp(1vh, 75vh, 95vw); /* Height is proportional to width */
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+  }
+
+  .gear-container {
+    position: absolute; /* This makes the container the reference point for the gears */
+    width: 100%;
+    height: 100%;
+    /* background-color: lightgray; */
+    transform-origin: 0 0;
+    background-size: cover;
+    background-position: center;
+    mask-image: url("/img/head_mask.png");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    user-select: none;
+  }
+
+  .gear-small {
+    position: absolute;
+    width: 15.64%;
+    height: 15.64%;
+    animation: rotate-clockwise 5s linear infinite;
+  }
+  
+  .gear-big {
+    position: absolute;
+    width: 31.75%;
+    height: 31.75%;
+    animation: rotate-clockwise 10s linear infinite;
+  }
+  
+  #gear1 {
+    top: 18.33%;
+    left: 1.58%;
+    rotate: 1.69deg;
+  }
+  
+  #gear2 {
+    top: -9%;
+    left: 14.53%;
+    rotate: -2.5deg;
+  }
+  
+  #gear3 {
+    top: -1.74%;
+    left: 59.08%;
+    rotate: -2.85deg;
+  }
+  
+  #gear4 {
+    top: 33.38%;
+    left: 28.16%;
+    rotate: 6deg;
+  }
+  
+  #gear5 {
+    top: 38.7%;
+    left: 66.98%;
+    rotate: 0deg;
+  }
+  
+  #gear6 {
+    top: 68.72%;
+    left: 6.16%;
+    rotate: 1deg;
+  }
+  
+  #gear7 {
+    top: 79.3%;
+    left: 34.94%;
+    rotate: 2.21deg;
+  }
+  
+  #gear8 {
+    top: 0.95%;
+    left: 45.18%;
+    rotate: 5.4deg;
+  }
+  
+  #gear9 {
+    top: 15.54%;
+    left: 43.76%;
+    rotate: -5.31deg;
+  }
+  
+  #gear10 {
+    top: 27.0%;
+    left: 53.33%;
+    rotate: 6.7deg; 
+  }
+  
+  #gear11 {
+    top: 24.64%;
+    left: 80.73%;
+    rotate: 4.66deg;
+  }
+  
+  #gear12 {
+    top: 56.08%;
+    left: 53.87%;
+    rotate: 4.38deg;
+  }
+  
+  #gear13 {
+    top: 64.77%;
+    left: 41.55%;
+    rotate: 4.19deg;
+  }
+  
+  #gear14 {
+    top: 68.25%;
+    left: 66.98%;
+    rotate: -9.55deg;
+  }
+  
+  #gear15 {
+    top: 82.94%;
+    left: 65.24%;
+    rotate: 10.58deg;
+  }
+  
+  #gear16 {
+    top: 48.03%;
+    left: 2.21%;
+    rotate: 9.02deg;
+  }
+  
+  .counterclockwise-big {
+    animation: rotate-counter-clockwise 10s linear infinite;
+  }
+  
+  .counterclockwise-small {
+    animation: rotate-counter-clockwise 5s linear infinite;
+  }
+  
+  
+  @keyframes rotate-clockwise {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg); /* Full clockwise rotation */
+    }
+  }
+  
+  @keyframes rotate-counter-clockwise {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(-360deg); /* Full counterclockwise rotation */
+    }
+  }
+
+/*****************************/
+/* SCREEN - ROBPUTER CONSOLE */
+/*****************************/
+
+#console-screen {
+  display: none;
+  flex-direction: column;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  transition: opacity 1s ease-in-out; /* Fade-in effect over 1 second */
+  mix-blend-mode: screen;
+  padding: 1%;
+}
+
+#console-screen.active {
+  opacity: 1.0;
+}
+
+
+/* Container to hold all Robputer head images */
+.robputer-container {
+  user-select: none;
+  position: relative;
+  aspect-ratio: 0.8473;
+  /* max-width: calc(75vh * 0.8473);
+  max-height: 75vh;  */
+  overflow: hidden;
+  /* margin-left: auto;
+  margin-right: auto;   */
+  margin-top: 5vh;
+  animation: bobbing 6s ease-in-out infinite; /* 6 seconds up and down bobbing */    
+  mix-blend-mode: screen; /* Additive blend mode */
+  /* width: 100%; */
+  height: 65%;
+  align-self: center;
+}
+
+/* Style for all images */
+.robputer-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;  /* Width is 50% of the viewport */
+  height: 100%; /* Height is proportional to width */
+  object-fit: cover; /* Ensures images fill the container without distortion */
+}
+
+/* mouth */
+.mouth {
+  opacity: 0;
+}
+
+/* eyes */
+.head-eyes-shut {
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  animation: eye-blink 10s infinite;
+}
+
+/* Keyframes to control the blinking timing */
+@keyframes eye-blink {
+  0%, 95% { opacity: 0; } /* Open eyes most of the time */
+  96%, 98% { opacity: 1; } /* Blink (closed) */
+  99%, 100% { opacity: 0; } /* Open again */
+}
+
+/* Add animation to the second image */
+.animate-eyes {
+  animation: slide 30s ease-in-out infinite; /* 3 seconds animation, infinite loop */
+}
+
+/* Keyframes for sliding eyes left and right */
+@keyframes slide {
+  0%, 10%, 100% {
+      transform: translateX(0%);
+  }
+  
+  15% {
+      transform: translateX(1.69%);
+  }
+
+  18%, 25% {
+      transform: translateX(1.69%);
+  }
+
+  30% {
+      transform: translateX(-1.35%);
+  }
+
+  32%, 40% {
+      transform: translateX(-1.35%);
+  }
+
+  45% {
+      transform: translateX(1.13%);
+  }
+
+  48%, 55% {
+      transform: translateX(1.13%);
+  }
+
+  60% {
+      transform: translateX(0%);
+  }
+
+  62%, 68% {
+      transform: translateX(0%);
+  }
+
+  72% {
+      transform: translateX(-0.56%);
+  }
+
+  75%, 80% {
+      transform: translateX(-0.56%);
+  }
+
+  85% {
+      transform: translateX(0.56%);
+  }
+
+  88%, 95% {
+      transform: translateX(0.56%);
+  }
+}
+
+/* Keyframes for bobbing up and down */
+@keyframes bobbing {
+  0%, 100% {
+      transform: translateY(0); /* Start and end in the original position */
+  }
+  
+  50% {
+      transform: translateY(-3vh); /* Slight upward motion at halfway point */
+  }
+}
+
+#robputer-head-angry {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+#input {
+  display: inline;
+  outline: none;
+  visibility: visible;
+}
+
+/*
+  If you press the Insert key, the vertical line caret will automatically
+  be replaced by a one-character selection.
+*/
+#input::selection {
+  color: #000;
+  background: #0F0;
+}
+
+#input:empty::before {
+  content: ' ';
+}
+
+@keyframes blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+#caret {
+  border: 0;
+  padding: 0;
+  outline: none;
+  background-color: #0F0;
+  display: inline-block;
+  font-family: monospace;
+  font-size: max(2vh, 12pt);
+}
+
+#input:focus + #caret {
+  animation: blink 1s steps(5, start) infinite;
+}
+
+#input.no-caret + #caret {
+  visibility: hidden;
+}
+
+#terminal {
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  width: 95vw;
+  /* display: block;
+  box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  overflow: hidden;
+  background-color: blue; */
+}
+
+.response {
+  opacity: 0.7;
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.bright-effect {
+  opacity: 1;
+  filter: brightness(1.5); /* Increase brightness when typing */
+}
+
+.dim-effect {
+  opacity: 0.;
+  filter: brightness(1); /* Fade down brightness after typing */
+}
+
+.fade-out {
+  opacity: 0; /* For fading out old responses */
+  transition: opacity 1s ease;
+}
